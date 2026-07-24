@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Complete reference
 
 > **Scope note:** This guide's primary focus is business logic, workflows, data fields, and administrative capabilities rather than visual layout or colors, since the UI design may change independently of the underlying functionality. Reference screenshots are included alongside the written descriptions throughout (stored under `images/`) for use in the published GitBook.

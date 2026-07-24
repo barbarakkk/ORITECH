@@ -10,12 +10,27 @@ description: Monitor platform health, activity, and financial indicators.
 
 Use Dashboard to assess revenue, cash flow, player activity, and operational queues.
 
-### Start here
+[Open the complete Dashboard manual](documentation.md#1-dashboard-overview)
 
-Check **Pending Withdrawals** first. Then review GGR, deposits, withdrawals, and active players.
+### Key metrics
 
-Use each chart's local date range before comparing results.
+* **GGR** shows wagers minus player winnings.
+* **Deposits** and **Withdrawals** show cash-flow movement.
+* **Active Players** and **New Registrations** show engagement and acquisition.
+* **Pending Withdrawals** is an actionable operational queue.
 
-[Read the Dashboard reference](documentation.md#1-dashboard-overview)
+Check Pending Withdrawals first. Escalate a growing queue to the payments team.
+
+### Analytics modules
+
+Review GGR, registrations, active-player trends, and deposits against withdrawals.
+
+Use First-Time Deposits to measure funded-player conversion. Review Top Players and Top Winners for VIP and risk follow-up. Use Game Performance and device distribution for product decisions.
+
+### Filters and comparison
+
+The global range controls apply to KPI tiles. Each chart has its own local range controls.
+
+Confirm each chart's local range before comparing figures. Mismatched periods produce misleading comparisons.
 
 [Next: Players Management](players-management.md)
