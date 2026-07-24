@@ -115,5 +115,3 @@ Search archived accounts by ID, email, or username. Use Advanced Filters and Col
 Archive is reversible and preserves records. Use it instead of deletion when retention or audit requirements apply.
 
 ![Archived Players list](.gitbook/assets/archived-players-list.png)
-
-[Previous: Dashboard](dashboard.md) · [Next: VIP Management](vip-management.md)

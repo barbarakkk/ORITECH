@@ -39,5 +39,3 @@ Review dependent policies before changing withdrawal, country, or language setti
 ![Edit Country](.gitbook/assets/countries-edit.png)
 
 ![Languages list](.gitbook/assets/languages-list.png)
-
-[Previous: Reports & Analytics](reports-and-analytics.md) · [Next: Admin Management](admin-management.md)

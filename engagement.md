@@ -49,5 +49,3 @@ Rank settings affect cashback, rakeback, Bonus Wheel access, and VIP labels. Rev
 ![Edit Leaderboard](.gitbook/assets/leaderboards-edit.png)
 
 ![Edit Rank](.gitbook/assets/ranks-edit.png)
-
-[Previous: Games](games.md) · [Next: Financials](financials.md)

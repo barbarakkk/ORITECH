@@ -29,5 +29,3 @@ Role changes affect every assigned administrator immediately. Apply least privil
 ![Roles and Permissions list](.gitbook/assets/roles-list.png)
 
 ![Edit Role permission tree](.gitbook/assets/roles-edit-permissions.png)
-
-[Previous: Platform Settings](platform-settings.md) · [Back to Home](./)

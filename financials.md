@@ -33,5 +33,3 @@ Verify KYC and risk context before approving a withdrawal. Confirm the destinati
 ![Withdrawal Requests list](.gitbook/assets/withdrawal-requests-list.png)
 
 ![Withdrawal Review dialog](.gitbook/assets/withdrawal-review-dialog.png)
-
-[Previous: Engagement](engagement.md) · [Next: Content](content.md)

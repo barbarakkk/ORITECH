@@ -39,5 +39,3 @@ Confirm translation, scheduling, and active status before publishing. Check acti
 ![Edit Page](.gitbook/assets/content-pages-edit.png)
 
 ![Edit Promotion](.gitbook/assets/content-promotions-edit.png)
-
-[Previous: Financials](financials.md) · [Next: Risk Management](risk-management.md)

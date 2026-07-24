@@ -23,5 +23,3 @@ Restrictions apply immediately to every group member. Group controls can overrid
 Document the reason for every restriction. Review group membership before changing individual controls. Remove members when an investigation clears them.
 
 ![Create Risk Group](.gitbook/assets/risk-groups-create.png)
-
-[Previous: Content](content.md) · [Next: Reports & Analytics](reports-and-analytics.md)

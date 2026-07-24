@@ -55,5 +55,3 @@ Use block position and active status to publish, unpublish, and order storefront
 ![Edit Category](.gitbook/assets/categories-edit.png)
 
 ![Manage Games in a Block](.gitbook/assets/game-blocks-manage-games.png)
-
-[Previous: VIP Management](vip-management.md) · [Next: Engagement](engagement.md)

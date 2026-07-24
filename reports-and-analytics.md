@@ -21,5 +21,3 @@ Filter by Player ID first. Then narrow by Wallet ID, entity, action, or a Quick 
 Use **View entity** to open the underlying record when available. Use the source module if that record cannot load.
 
 Export the filtered log for investigations, reconciliation, or compliance records.
-
-[Previous: Risk Management](risk-management.md) · [Next: Platform Settings](platform-settings.md)

@@ -33,5 +33,3 @@ Use Transactions to verify deposits, withdrawals, balances, and manual adjustmen
 Treat large credits, bonuses, and withdrawals as risk-sensitive actions. Check context, compliance status, and account links first.
 
 ![VIP player profile](.gitbook/assets/vip-player-profile.png)
-
-[Previous: Players Management](players-management.md) · [Next: Games](games.md)
