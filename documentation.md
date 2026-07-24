@@ -1,6 +1,6 @@
 # Asdfbet Admin Panel — User Manual & Functional Guide
 
-> **Scope note:** This guide's primary focus is business logic, workflows, data fields, and administrative capabilities rather than visual layout or colors, since the UI design may change independently of the underlying functionality. Starting with the [Content](#7-content) section, reference screenshots are included alongside the written descriptions (stored under `images/`) for use in the published GitBook — earlier sections (Dashboard through Financials) are text-only for now.
+> **Scope note:** This guide's primary focus is business logic, workflows, data fields, and administrative capabilities rather than visual layout or colors, since the UI design may change independently of the underlying functionality. Reference screenshots are included alongside the written descriptions throughout (stored under `images/`) for use in the published GitBook.
 
 **Source system:** `admin.asdfbet.com`
 **Audience:** Platform administrators, support/compliance staff, and operations teams.
@@ -92,6 +92,12 @@ Below the KPI tiles, the Dashboard breaks data into functional modules, each ind
 
 > **Admin tip:** Because each chart module has its own date range independent of the global selector, always double-check a module's local date range before comparing it against another module or against the top KPI tiles — mismatched ranges are a common source of "the numbers don't match" confusion.
 
+![Dashboard KPIs and GGR Overview](images/dashboard/dashboard-kpis-ggr.png)
+![Player Registrations and Active Player Trends](images/dashboard/dashboard-registrations-active.png)
+![Deposits vs Withdrawals and First-Time Deposits](images/dashboard/dashboard-deposits-withdrawals-ftd.png)
+![Top Players and Game Performance](images/dashboard/dashboard-top-players-games.png)
+![Device Distribution](images/dashboard/dashboard-device-distribution.png)
+
 ---
 
 ## 2. Players Management
@@ -162,6 +168,17 @@ Each player record opens a dedicated profile with a wallet balance summary (Fiat
 
 > **Admin tip:** Always check the **Notes** tab before acting on an account — a previous admin may have already documented context (e.g., an ongoing investigation) that changes the right next action.
 
+![All Players list](images/players/all-players-list.png)
+![Player profile — Dashboard tab](images/players/player-profile-dashboard.png)
+![Player profile — Personal Info tab](images/players/player-profile-personal-info.png)
+![Player profile — Transactions tab](images/players/player-profile-transactions.png)
+![Player profile — Bonuses tab](images/players/player-profile-bonuses.png)
+![Player profile — KYC tab](images/players/player-profile-kyc.png)
+![Player profile — Notes tab](images/players/player-profile-notes.png)
+![Player profile — Risk tab (Sessions)](images/players/player-profile-risk-sessions.png)
+![Player profile — Notifications tab](images/players/player-profile-notifications.png)
+![Player profile — Logs tab](images/players/player-profile-logs.png)
+
 ---
 
 ### 2.2 KYC Queue
@@ -191,6 +208,8 @@ Each player record opens a dedicated profile with a wallet balance summary (Fiat
 
 > **Admin tip:** Identity Verification and Address Verification are tracked as two independent approval blocks — a player can be identity-approved but still pending on address proof (or vice versa). Don't assume one implies the other.
 
+![KYC Queue](images/players/kyc-queue-list.png)
+
 ---
 
 ### 2.3 Archived Players
@@ -213,6 +232,8 @@ Each player record opens a dedicated profile with a wallet balance summary (Fiat
 4. If the player is eligible to return (e.g., self-exclusion period has lapsed and the player requests reinstatement), admin uses the **Restore** action to reactivate the account.
 
 > **Admin tip:** Because archiving is reversible via Restore, it's the safe default action for "remove this player from daily view" requests — reserve any hard/permanent deletion (if available elsewhere in the system) for cases with an explicit legal or data-retention-policy justification.
+
+![Archived Players list](images/players/archived-players-list.png)
 
 ---
 
@@ -250,6 +271,8 @@ VIP Management is the dedicated space for identifying, reviewing, and administer
 
 > **Admin tip:** The VIP badge and the tier/rank label (e.g., "Newcomer") are shown together but are separate concepts — VIP is a flag granted by an admin action, while the tier/rank appears to reflect the player's progression level. When reviewing a VIP account, check both rather than assuming the tier label is redundant with the VIP flag.
 
+![VIP Players list](images/vip-management/vip-players-list.png)
+
 ---
 
 ### 3.2 VIP Player Profile — Tab-by-Tab Purpose
@@ -269,6 +292,8 @@ Opening a **View** on any VIP player leads into the same profile shell used acro
 | **Logs** | Full audit trail of account/wallet actions (Entity, Action, Balance Before/After, Balance Change, Sys Amount), filterable and exportable. | VIP accounts see more manual intervention than average (manual credits/debits, comped bonuses, support adjustments), each of which carries outsized financial impact. The Logs tab is the audit trail that lets the business reconstruct exactly who changed what on a high-value account and when — essential for internal controls, dispute resolution, and regulatory audit given the larger sums involved. |
 
 > **Admin tip:** For a VIP, treat **Notes**, **KYC**, and **Risk → Identity Links** as the three tabs to check *before* any high-value action (large manual credit, bonus grant, or withdrawal approval) — together they answer "is there prior context I should know," "are we compliant to move this much money," and "is this actually one legitimate high-value player." Skipping any of the three is where VIP-related losses and compliance issues typically originate.
+
+![VIP player profile](images/vip-management/vip-player-profile.png)
 
 ---
 
@@ -307,6 +332,10 @@ The Games module is the platform's game catalog and merchandising control center
 
 > **Admin tip:** `Active` (Is Active — Aggregator) and `Show` are different concepts — `Active` reflects whether the provider/aggregator feed for the game is live, while `Show` is the platform's own lobby-visibility switch. A game can be aggregator-active but hidden from players (`Show = No`), which is the safe way to stage a new title before launch.
 
+![All Games list](images/games/all-games-list.png)
+![Game Full Info](images/games/all-games-full-info.png)
+![Edit Game](images/games/all-games-edit.png)
+
 ---
 
 ### 4.2 Game Analytics
@@ -325,6 +354,8 @@ The Games module is the platform's game catalog and merchandising control center
 2. Cross-references high performers against **Game Blocks** placement (below) to confirm strong titles are actually featured prominently in the lobby.
 3. Sorts ascending, or searches a specific title, to investigate underperformers or a specific game flagged elsewhere (e.g., a title with an unusual GGR swing surfaced on the Dashboard's Top Games chart).
 4. Uses the BM (bonus money) columns to assess bonus exposure per title — a game with disproportionately high BM Total OUT relative to BM Total IN represents a game where bonus funds are being paid out faster than wagered into, relevant when setting or revisiting a title's **Wager Weight** (see [4.4](#44-categories)).
+
+![Game Analytics](images/games/game-analytics.png)
 
 ---
 
@@ -353,6 +384,9 @@ The Games module is the platform's game catalog and merchandising control center
 
 > **Admin tip:** Deactivating a provider is a blunt instrument — it affects every title from that studio simultaneously. For surgical, single-title changes, use the **Show**/**Active** toggles on the individual game in [All Games](#41-all-games) instead.
 
+![Providers list](images/games/providers-list.png)
+![Provider Mapping](images/games/provider-mapping.png)
+
 ---
 
 ### 4.4 Categories
@@ -374,6 +408,9 @@ The Games module is the platform's game catalog and merchandising control center
 4. Multi-language title fields are kept in sync here so the category name displays correctly across the platform's supported locales (English/Korean/Chinese observed).
 
 > **Admin tip:** A Wager Weight change is a bonus-economics lever, not just a labeling setting — treat it with the same care as a bonus terms change, since it retroactively affects how fast in-progress wagering requirements clear for any player currently playing games in that category.
+
+![Categories list](images/games/categories-list.png)
+![Edit Category](images/games/categories-edit.png)
 
 ---
 
@@ -399,6 +436,10 @@ The Games module is the platform's game catalog and merchandising control center
 5. Admin periodically revisits blocks alongside **Game Analytics** ([4.2](#42-game-analytics)) to swap underperforming titles out for stronger ones, keeping featured placements aligned with actual player engagement and revenue.
 
 > **Admin tip:** Game Blocks is the tool for "what players see first," while Game Analytics is the tool for "what actually makes money" — the recurring merchandising workflow is comparing the two and adjusting block contents so the two lists move closer together over time.
+
+![Game Blocks list](images/games/game-blocks-list.png)
+![Edit Game Block](images/games/game-blocks-edit.png)
+![Manage Games in a Block](images/games/game-blocks-manage-games.png)
 
 ---
 
@@ -444,6 +485,10 @@ Engagement is the platform's player-retention and reward engine. It defines ever
 
 > **Admin tip:** `Trigger = Bonus wheel` or `Leaderboard reward` means this bonus definition isn't claimed directly by players — it's the payout vehicle referenced by a Bonus Wheel prize slot or a Leaderboard prize place. Check [5.4](#54-bonus-wheel) / [5.5](#55-leaderboards) before assuming an unused-looking bonus is dead.
 
+![Bonuses list](images/engagement/bonuses-list.png)
+![Create New Bonus — type picker](images/engagement/bonuses-create-type-picker.png)
+![Free Spins bonus wizard](images/engagement/bonuses-freespins-wizard.png)
+
 ---
 
 ### 5.2 Cashback
@@ -463,6 +508,8 @@ Engagement is the platform's player-retention and reward engine. It defines ever
 3. Admin uses **Min Threshold** and category/provider exclusions to prevent cashback from being paid on negligible losses or from low-risk game types being used to farm cashback.
 4. Admin toggles a cycle **Active/Inactive** to pause a specific cashback cadence platform-wide.
 
+![Cashback list](images/engagement/cashback-list.png)
+
 ---
 
 ### 5.3 Rakeback
@@ -477,6 +524,8 @@ Engagement is the platform's player-retention and reward engine. It defines ever
 **Standard Operational Workflow:** Same as Cashback ([5.2](#52-cashback)) — admin manages cycle cadence and thresholds here; the payout rate itself is a function of rank.
 
 > **Admin tip:** Cashback rewards players for **losing** (net losses); Rakeback rewards players for **playing** (wager volume/rake), regardless of whether they're up or down. A player can qualify for one, both, or neither on a given cycle depending on their activity pattern — they are not the same mechanic despite sharing an identical admin UI.
+
+![Rakeback list](images/engagement/rakeback-list.png)
 
 ---
 
@@ -505,6 +554,11 @@ Engagement is the platform's player-retention and reward engine. It defines ever
 4. Ongoing: admin reviews **Spin History** to audit payout volume/value per rank group and confirm the configured odds are producing the intended prize mix in practice.
 
 > **Admin tip:** Because slot chances must total exactly 1,000,000, changing one prize's odds always requires rebalancing at least one other slot in the same wheel — treat this as an all-or-nothing edit, not a single-field tweak.
+
+![Bonus Wheel — Prize Catalog](images/engagement/bonus-wheel-prize-catalog.png)
+![Bonus Wheel — Configurations](images/engagement/bonus-wheel-configurations.png)
+![Bonus Wheel — Configure Prizes & Chances](images/engagement/bonus-wheel-configure-prizes.png)
+![Bonus Wheel — Spin History](images/engagement/bonus-wheel-spin-history.png)
 
 ---
 
@@ -537,6 +591,11 @@ Engagement is the platform's player-retention and reward engine. It defines ever
 5. Admin decides whether prizes are paid automatically (**Auto-Give Prizes** on) at the competition's end, or held for manual review/payout.
 6. After the competition ends, admin reviews **Win Logs** to confirm correct payout and audit the final standings.
 
+![Leaderboards list](images/engagement/leaderboards-list.png)
+![Edit Leaderboard](images/engagement/leaderboards-edit.png)
+![Leaderboard Prizes](images/engagement/leaderboards-prizes.png)
+![Leaderboard Win Logs](images/engagement/leaderboards-win-logs.png)
+
 ---
 
 ### 5.6 Ranks
@@ -561,6 +620,9 @@ Engagement is the platform's player-retention and reward engine. It defines ever
 4. New players start at the bottom tier (Newcomer) and progress automatically as lifetime wager crosses each Min Wager threshold — this is also what feeds the "tier/rank label" shown on a VIP player's profile header (see [3.1](#31-vip-players)).
 
 > **Admin tip:** Ranks is the root of the loyalty system — changes here ripple into Cashback/Rakeback payout rates, Bonus Wheel prize-pool assignment, and VIP profile badging all at once. Treat rank-table edits as a platform-wide economics change, not a cosmetic label update.
+
+![Ranks list](images/engagement/ranks-list.png)
+![Edit Rank](images/engagement/ranks-edit.png)
 
 ---
 
@@ -599,6 +661,9 @@ Financials is the platform's money-movement ledger and payout control point. Whe
 
 > **Admin tip:** `Amount (sys)` vs `Amount (wallet)` matters whenever the platform's base currency differs from the player's wallet currency (e.g., a KRW wallet transaction normalized to USD) — always check `Amount (sys)` when comparing figures across players on different currencies, since raw `Amount (wallet)` values aren't directly comparable.
 
+![Transactions list](images/financials/transactions-list.png)
+![Transaction detail view](images/financials/transaction-detail.png)
+
 ---
 
 ### 6.2 Withdrawal Requests
@@ -626,6 +691,9 @@ Financials is the platform's money-movement ledger and payout control point. Whe
 5. Admin can toggle a request as **Locked** to hold it (e.g., pending a Risk Management review — see the upcoming Risk Management section) without approving or rejecting outright, and can leave a **Note** documenting the reasoning for the decision, for audit purposes.
 
 > **Admin tip:** Before approving, cross-check the player's **KYC** status ([2.1](#21-all-players) / [2.2](#22-kyc-queue)) and **Risk → Identity Links** ([3.2](#32-vip-player-profile--tab-by-tab-purpose)) — withdrawal approval is the point of highest financial exposure in the entire admin panel, and it's the last checkpoint before funds actually leave the platform.
+
+![Withdrawal Requests list](images/financials/withdrawal-requests-list.png)
+![Withdrawal Review dialog](images/financials/withdrawal-review-dialog.png)
 
 ---
 
