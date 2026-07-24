@@ -1,0 +1,15 @@
+# Table of contents
+
+* [Home](README.md)
+* [Dashboard](dashboard.md)
+* [Players Management](players-management.md)
+* [VIP Management](vip-management.md)
+* [Games](games.md)
+* [Engagement](engagement.md)
+* [Financials](financials.md)
+* [Content](content.md)
+* [Risk Management](risk-management.md)
+* [Reports & Analytics](reports-and-analytics.md)
+* [Platform Settings](platform-settings.md)
+* [Admin Management](admin-management.md)
+* [Complete reference](documentation.md)
