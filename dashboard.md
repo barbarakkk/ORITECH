@@ -33,4 +33,3 @@ The global range controls apply to KPI tiles. Each chart has its own local range
 
 Confirm each chart's local range before comparing figures. Mismatched periods produce misleading comparisons.
 
-[Next: Players Management](players-management.md)
