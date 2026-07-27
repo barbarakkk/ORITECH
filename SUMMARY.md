@@ -13,3 +13,4 @@
 * [Platform Settings](platform-settings.md)
 * [Admin Management](admin-management.md)
 * [Complete reference](documentation.md)
+* [Mockup sync test](mockup.md)
