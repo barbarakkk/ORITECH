@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Home](README.md)
+* [Admin Panel guide](README.md)
 * [Dashboard](dashboard.md)
 * [Players Management](players-management.md)
 * [VIP Management](vip-management.md)
