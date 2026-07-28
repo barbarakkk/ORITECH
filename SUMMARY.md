@@ -16,3 +16,4 @@
 * [Platform Settings](platform-settings.md)
 * [Admin Management](admin-management.md)
 * [Complete reference](documentation.md)
+* [wassup beijing](player-management/wassup-beijing.md)
