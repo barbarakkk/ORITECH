@@ -2,11 +2,12 @@
 
 * [Admin Panel guide](README.md)
 * [Dashboard](dashboard.md)
+
 ## Player Management
-* [Players Management](players-management.md) 
-* [VIP Management](vip-management.md)
-  * [vip 123](games.md)
-* [Games](games.md) 
+
+* [Players Management](players-management.md)
+* [VIP Management](player-management/vip-management.md)
+* [Games](/broken/pages/U9QNXxSsRjiqvmS7xV0E)
 * [Engagement](engagement.md)
 * [Financials](financials.md)
 * [Content](content.md)
@@ -15,4 +16,3 @@
 * [Platform Settings](platform-settings.md)
 * [Admin Management](admin-management.md)
 * [Complete reference](documentation.md)
-

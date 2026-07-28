@@ -6,11 +6,11 @@ description: Review and support high-value player accounts.
 
 ## VIP Management
 
-![VIP Players list](.gitbook/assets/vip-players-list.png)
+![VIP Players list](../.gitbook/assets/vip-players-list.png)
 
 Use VIP Management to monitor high-value players and their account context.
 
-[Open the complete VIP Management manual](documentation.md#3-vip-management)
+[Open the complete VIP Management manual](../documentation.md#3-vip-management)
 
 ### VIP Players
 
@@ -32,4 +32,4 @@ Use Transactions to verify deposits, withdrawals, balances, and manual adjustmen
 
 Treat large credits, bonuses, and withdrawals as risk-sensitive actions. Check context, compliance status, and account links first.
 
-![VIP player profile](.gitbook/assets/vip-player-profile.png)
+![VIP player profile](../.gitbook/assets/vip-player-profile.png)

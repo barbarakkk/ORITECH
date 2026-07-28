@@ -13,10 +13,10 @@
    * [2.1 All Players](documentation.md#21-all-players)
    * [2.2 KYC Queue](documentation.md#22-kyc-queue)
    * [2.3 Archived Players](documentation.md#23-archived-players)
-3. [VIP Management](vip-management.md)
+3. [VIP Management](player-management/vip-management.md)
    * [3.1 VIP Players](documentation.md#31-vip-players)
    * [3.2 VIP Player Profile — Tab-by-Tab Purpose](documentation.md#32-vip-player-profile--tab-by-tab-purpose)
-4. [Games](games.md)
+4. [Games](/broken/pages/U9QNXxSsRjiqvmS7xV0E)
    * [4.1 All Games](documentation.md#41-all-games)
    * [4.2 Game Analytics](documentation.md#42-game-analytics)
    * [4.3 Providers](documentation.md#43-providers)
@@ -91,7 +91,7 @@ Below the KPI tiles, the Dashboard breaks data into functional modules, each ind
 
 > **Admin tip:** Because each chart module has its own date range independent of the global selector, always double-check a module's local date range before comparing it against another module or against the top KPI tiles — mismatched ranges are a common source of "the numbers don't match" confusion.
 
-![Dashboard KPIs and GGR Overview](.gitbook/assets/dashboard-kpis-ggr.png) ![Player Registrations and Active Player Trends](.gitbook/assets/dashboard-registrations-active.png) ![Deposits vs Withdrawals and First-Time Deposits](.gitbook/assets/dashboard-deposits-withdrawals-ftd.png) ![Top Players and Game Performance](.gitbook/assets/dashboard-top-players-games.png) ![Device Distribution](.gitbook/assets/dashboard-device-distribution.png)
+![Dashboard KPIs and GGR Overview](.gitbook/assets/dashboard-kpis-ggr.png) ![Player Registrations and Active Player Trends](.gitbook/assets/dashboard-top-players-games.png) ![Deposits vs Withdrawals and First-Time Deposits](.gitbook/assets/dashboard-top-players-games.png) ![Top Players and Game Performance](.gitbook/assets/dashboard-top-players-games.png) ![Device Distribution](.gitbook/assets/dashboard-top-players-games.png)
 
 ***
 
