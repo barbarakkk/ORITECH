@@ -2,6 +2,7 @@
 
 * [Admin Panel guide](README.md)
 * [Dashboard](dashboard.md)
+## Player Management
 * [Players Management](players-management.md)
 * [VIP Management](vip-management.md)
   * [vip 123](games.md)
