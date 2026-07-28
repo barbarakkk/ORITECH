@@ -24,3 +24,5 @@ This page is a temporary test to verify that GitHub pushes appear in GitBook.
 4. Delete this file once confirmed
 
 > If you can read this callout in GitBook, the sync is working.
+
+ilove georgia
