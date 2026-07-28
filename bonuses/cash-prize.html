@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cash Prize — Oritech Bonus System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef3f0;
+      --bg-deep: #dfe9e4;
+      --ink: #14201c;
+      --ink-soft: #3d524a;
+      --muted: #5f736a;
+      --line: rgba(20, 32, 28, 0.12);
+      --accent: #0f6b5c;
+      --accent-bright: #1a9a84;
+      --warn: #9a4a1c;
+      --warn-bg: #f7ebe3;
+      --ok: #1f6b45;
+      --ok-bg: #e4f2ea;
+      --surface: rgba(255, 255, 255, 0.55);
+      --radius: 4px;
+      --max: 720px;
+      --wide: 960px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Sora", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(26, 154, 132, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(20, 32, 28, 0.08), transparent 50%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 2.5rem, var(--wide));
+      margin: 0 auto;
+      padding-bottom: 5rem;
+    }
+
+    /* Hero — one composition */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3.5rem 0 3rem;
+      animation: rise 0.9s ease-out both;
+    }
+
+    .brand {
+      font-family: "Fraunces", serif;
+      font-size: clamp(3.2rem, 9vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--ink);
+    }
+
+    .brand span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      margin-top: 1.25rem;
+      max-width: 34rem;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      animation: rise 0.9s 0.15s ease-out both;
+    }
+
+    .hero-meta {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: rise 0.9s 0.28s ease-out both;
+    }
+
+    .hero-meta a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .hero-meta a:hover { border-bottom-color: var(--accent); }
+
+    nav.toc {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin: 0 0 3rem;
+      padding: 0.85rem 0;
+      backdrop-filter: blur(10px);
+      background: rgba(238, 243, 240, 0.82);
+      border-block: 1px solid var(--line);
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    nav.toc a {
+      display: inline-block;
+      margin-right: 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav.toc a:hover { color: var(--accent); }
+
+    section {
+      max-width: var(--max);
+      margin: 0 auto 4.5rem;
+      scroll-margin-top: 4rem;
+      animation: fade-in 0.7s ease-out both;
+    }
+
+    section.wide { max-width: var(--wide); }
+
+    h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.85rem;
+    }
+
+    h3 {
+      font-family: "Fraunces", serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2rem 0 0.65rem;
+    }
+
+    p, li { color: var(--ink-soft); font-size: 0.98rem; }
+
+    p + p { margin-top: 0.85rem; }
+
+    .lede {
+      font-size: 1.12rem;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    ul.clean {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    ul.clean li {
+      position: relative;
+      padding-left: 1.15rem;
+      margin-bottom: 0.55rem;
+    }
+
+    ul.clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.4rem;
+      height: 0.4rem;
+      background: var(--accent-bright);
+    }
+
+    .formula {
+      margin: 1.5rem 0;
+      padding: 1.1rem 1.25rem;
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 2.25rem 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: "Fraunces", serif;
+      font-size: 1.05rem;
+      color: var(--accent);
+      line-height: 1.4;
+    }
+
+    .compare {
+      margin-top: 1.75rem;
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 8rem repeat(3, minmax(9rem, 1fr));
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .compare-row > * {
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .compare-row.head {
+      background: var(--ink);
+      color: #eef3f0;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .compare-row .label {
+      font-weight: 600;
+      color: var(--ink);
+      background: rgba(238, 243, 240, 0.9);
+    }
+
+    .compare-row.head .label { background: transparent; color: inherit; }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .example {
+      margin-top: 1.75rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .example div {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1.15rem 1rem;
+    }
+
+    .example .k {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .example .v {
+      font-family: "Fraunces", serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .example .v.accent { color: var(--accent); }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+    }
+
+    table.data th,
+    table.data td {
+      text-align: left;
+      padding: 0.7rem 0.85rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    table.data th {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    table.data code,
+    code {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.84em;
+      background: rgba(20, 32, 28, 0.06);
+      padding: 0.1em 0.35em;
+    }
+
+    .channels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .channels span {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
+
+    .channels span.off {
+      opacity: 0.45;
+      text-decoration: line-through;
+    }
+
+    .callout {
+      margin-top: 1.5rem;
+      padding: 1.15rem 1.25rem;
+      border: 1px solid var(--line);
+      background: var(--ok-bg);
+    }
+
+    .callout.warn {
+      background: var(--warn-bg);
+      border-color: rgba(154, 74, 28, 0.25);
+    }
+
+    .callout strong {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      color: var(--ok);
+    }
+
+    .callout.warn strong { color: var(--warn); }
+
+    .checklist {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .checklist li {
+      display: grid;
+      grid-template-columns: 1.1rem 1fr;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .checklist li::before {
+      content: "";
+      width: 0.85rem;
+      height: 0.85rem;
+      margin-top: 0.25rem;
+      border: 1.5px solid var(--accent);
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--accent); }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 1.5rem, var(--wide)); }
+
+      .example {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .compare-row {
+        grid-template-columns: 6.5rem repeat(3, minmax(8rem, 1fr));
+      }
+
+      .hero { min-height: auto; padding-top: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <p class="brand">Oritech<span>Cash Prize</span></p>
+      <p class="hero-lead">
+        Wager-to-release reward: the prize stays pending while the player bets with their own real cash. When wagering is done, the prize lands in real balance — operator pays only on completion.
+      </p>
+      <div class="hero-meta">
+        <span>Bonus mechanic · Retention</span>
+        <span>Backoffice · Create New Bonus</span>
+        <a href="https://go.oritech.space/bonus-system/" target="_blank" rel="noopener">Strategy deck</a>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#what">What it is</a>
+      <a href="#compare">Compare</a>
+      <a href="#flow">Flow</a>
+      <a href="#config">Config</a>
+      <a href="#fields">Instance fields</a>
+      <a href="#wagering">Wagering</a>
+      <a href="#payout">Payout</a>
+      <a href="#checklist">Checklist</a>
+    </nav>
+
+    <section id="what">
+      <h2>What it is</h2>
+      <p class="lede">Cash Prize is not playable bonus money. It is a pending reward unlocked by real-money play.</p>
+      <ul class="clean">
+        <li>Prize stays <strong>pending</strong> until wagering completes</li>
+        <li>Player bets with <strong>real balance</strong> (no locked bonus wallet)</li>
+        <li>On completion, prize is credited to <strong>real balance</strong></li>
+        <li><strong>Best for:</strong> retention, reloads, milestones — not first-deposit acquisition</li>
+        <li><strong>Cost profile:</strong> pay only when the player finishes wagering</li>
+      </ul>
+    </section>
+
+    <section id="compare" class="wide">
+      <h2>How it differs</h2>
+      <p class="lede">Three mechanics, different jobs. Cash Prize is the low-risk retention tool.</p>
+      <div class="compare" role="table" aria-label="Bonus type comparison">
+        <div class="compare-row head" role="row">
+          <div class="label" role="columnheader"> </div>
+          <div role="columnheader">Cash Prize</div>
+          <div role="columnheader">Bonus Money</div>
+          <div role="columnheader">Free Spins</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div class="label" role="rowheader">Play funds</div>
+          <div role="cell"><span class="highlight">Real cash</span></div>
+          <div role="cell">Bonus balance</div>
+          <div role="cell">Free rounds</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div class="label" role="rowheader">Timing</div>
+          <div role="cell">Pending → release after wager</div>
+          <div role="cell">Match locked upfront</div>
+          <div role="cell">Spins granted</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div class="label" role="rowheader">Payout</div>
+          <div role="cell">Credit <strong>prize amount</strong></div>
+          <div role="cell">Unlock / convert (with caps)</div>
+          <div role="cell">Wins → cash or bonus</div>
+        </div>
+        <div class="compare-row" role="row">
+          <div class="label" role="rowheader">Risk</div>
+          <div role="cell">Very low</div>
+          <div role="cell">Medium (Bonus Cap)</div>
+          <div role="cell">Low (per spin)</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <h2>End-to-end flow</h2>
+      <p class="lede">From deposit trigger to wallet credit.</p>
+      <ol class="steps">
+        <li>Trigger fires (e.g. qualifying deposit)</li>
+        <li>System creates a player bonus instance</li>
+        <li>Sets <code>init_amount</code> = prize (fixed or % of deposit)</li>
+        <li>Sets <code>wager_amount</code> = <code>init_amount × wagering_coefficient</code></li>
+        <li>Player places qualifying bets with real money</li>
+        <li><code>wagered_amount</code> rises until ≥ <code>wager_amount</code></li>
+        <li><code>is_wagered = true</code></li>
+        <li>Transfer: wallet gets the prize (<code>init_amount</code>, or per-split share)</li>
+        <li><code>is_transfered = true</code>, <code>is_active = false</code></li>
+      </ol>
+
+      <h3>Worked example · 10% · 1× · split 1 · KRW</h3>
+      <div class="example">
+        <div>
+          <div class="k">Deposit</div>
+          <div class="v">₩10,000</div>
+        </div>
+        <div>
+          <div class="k">Prize</div>
+          <div class="v accent">₩1,000</div>
+        </div>
+        <div>
+          <div class="k">Wager need</div>
+          <div class="v">₩1,000</div>
+        </div>
+        <div>
+          <div class="k">On complete</div>
+          <div class="v accent">+₩1,000</div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem;">Player may wager more than ₩1,000. Extra play must <strong>not</strong> increase the payout.</p>
+    </section>
+
+    <section id="config" class="wide">
+      <h2>Backoffice configuration</h2>
+      <p class="lede">Path: Bonuses → Create New Bonus → Cash Prize Bonus</p>
+
+      <h3>General</h3>
+      <table class="data">
+        <thead>
+          <tr><th>Field</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Type</td><td>Cash Prize</td></tr>
+          <tr><td>Name / Description</td><td>Player-facing labels</td></tr>
+          <tr><td>Status</td><td>Active / inactive</td></tr>
+          <tr><td>Trigger</td><td>e.g. Deposit</td></tr>
+          <tr><td>Deposit Order</td><td>Any / First / Second / …</td></tr>
+          <tr><td>Recurrence</td><td>Once / Daily / Weekly / Monthly / None</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Rules</h3>
+      <table class="data">
+        <thead>
+          <tr><th>Field</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bonus Expiry</td><td>Time to finish after the instance is created</td></tr>
+          <tr><td>Campaign Expiry</td><td>How long the offer stays available</td></tr>
+          <tr><td>Wagering</td><td>Coefficient applied to the <strong>prize</strong> (not the deposit)</td></tr>
+          <tr><td>Max Claim</td><td>Cap on claimable prize (<code>0</code> = none / per product rules)</td></tr>
+          <tr><td>Amount Type</td><td>Fixed amount or Percent (%) of deposit</td></tr>
+          <tr><td>Win with Wagering</td><td>Affects win routing / eligibility during the period</td></tr>
+          <tr><td>Split Count</td><td>Number of release stages for the prize</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Per currency</h3>
+      <p>Every live currency needs a row before launch.</p>
+      <table class="data">
+        <thead>
+          <tr><th>Field</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Amount</td><td>Prize value, or percent if Amount Type = %</td></tr>
+          <tr><td>Min Deposit</td><td>Minimum deposit to qualify</td></tr>
+          <tr><td>Min / Max Bet</td><td>Bet sizes that count toward wagering</td></tr>
+          <tr><td>Max Amount</td><td>Ceiling on prize size</td></tr>
+        </tbody>
+      </table>
+
+      <h3>KRW sample · “cash prize test”</h3>
+      <table class="data">
+        <thead>
+          <tr><th>Amount</th><th>Max Bet</th><th>Min Bet</th><th>Max Amount</th><th>Min Deposit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10 (%)</td><td>0</td><td>1000</td><td>500000</td><td>10000</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 0.75rem;">Deposit ₩10,000 qualifies → prize <strong>₩1,000</strong>.</p>
+
+      <h3>Delivery channels</h3>
+      <div class="channels">
+        <span>Deposit trigger</span>
+        <span>CRM segment</span>
+        <span>Promo code</span>
+        <span>Bonus Wheel</span>
+        <span>Leaderboard</span>
+        <span class="off">Marketplace</span>
+      </div>
+      <p style="margin-top: 0.75rem; font-size: 0.85rem;">Marketplace is Bonus Money packs only — not Cash Prize.</p>
+    </section>
+
+    <section id="fields">
+      <h2>Player instance fields</h2>
+      <p class="lede">What you see on the claimed bonus in backoffice Entity Details.</p>
+      <table class="data">
+        <thead>
+          <tr><th>Field</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>init_amount</code></td><td>Prize that should be paid</td></tr>
+          <tr><td><code>wager_amount</code></td><td>Total wagering required</td></tr>
+          <tr><td><code>wagered_amount</code></td><td>Qualifying wager counted so far</td></tr>
+          <tr><td><code>amount</code></td><td>Current / residual value on the record</td></tr>
+          <tr><td><code>split_number</code></td><td>Configured release stages</td></tr>
+          <tr><td><code>split_wagered</code> / <code>split_claimed</code></td><td>Split progress — must not exceed <code>split_number</code></td></tr>
+          <tr><td><code>is_wagered</code></td><td>Wager requirement met</td></tr>
+          <tr><td><code>is_transfered</code></td><td>Prize credited to wallet</td></tr>
+          <tr><td><code>is_active</code></td><td>Still active for the player</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Correct completion · split = 1</h3>
+      <div class="formula">
+init_amount      = 1000<br />
+wager_amount     = 1000<br />
+wagered_amount  ≥ 1000<br />
+split_number     = 1<br />
+split_claimed    = 1&nbsp;&nbsp;&nbsp;&nbsp;// never above split_number<br />
+is_wagered       = true<br />
+is_transfered    = true<br />
+wallet credit    = init_amount&nbsp;&nbsp;// 1000
+      </div>
+    </section>
+
+    <section id="wagering">
+      <h2>Wagering rules</h2>
+      <ul class="clean">
+        <li>Base is the <strong>prize</strong>, not the deposit: <code>wager_amount = init_amount × coefficient</code></li>
+        <li>Only qualifying bets count (min/max bet, game include/exclude)</li>
+        <li>Player uses real balance the whole time</li>
+        <li>Extra wager beyond requirement does not increase the prize</li>
+        <li>With Split Count = N, prize releases in up to N stages; total paid should still equal <code>init_amount</code></li>
+      </ul>
+      <div class="callout">
+        <strong>Remember</strong>
+        ROI and product docs treat Cash Prize the same way: wager the prize amount from the player’s own cash — see the <a href="https://go.oritech.space/bonus-system/" target="_blank" rel="noopener">Oritech Bonus Strategy deck</a>.
+      </div>
+    </section>
+
+    <section id="payout">
+      <h2>Expected payout</h2>
+      <p class="lede">The wallet credit is always the prize — never the amount wagered.</p>
+      <table class="data">
+        <thead>
+          <tr><th>Situation</th><th>Expected credit</th><th>Wrong</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10% of ₩10,000 · 1× · split 1</td>
+            <td><strong>₩1,000</strong></td>
+            <td>Crediting <code>wagered_amount</code></td>
+          </tr>
+          <tr>
+            <td>Same, player wagered ₩4,000</td>
+            <td>Still <strong>₩1,000</strong></td>
+            <td><code>init_amount × split_claimed</code> when splits inflate</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <strong>Failure pattern to watch</strong>
+        If <code>split_number = 1</code> but <code>split_claimed</code> rises with wager chunks (e.g. per min bet), payout can become
+        <code>init_amount × split_claimed</code> (e.g. 1000 × 4 = 4000) instead of <code>init_amount</code> (1000).
+        Regression: over-wager must still pay <strong>+₩1,000</strong> only, with <code>split_claimed = 1</code>.
+      </div>
+    </section>
+
+    <section id="checklist">
+      <h2>Operator checklist</h2>
+      <ul class="checklist">
+        <li>Currency row filled for every live currency</li>
+        <li>Min deposit matches the offer</li>
+        <li>Amount Type + Amount = intended prize</li>
+        <li>Wagering coefficient understood as × prize, not × deposit</li>
+        <li>Split Count intentional (1 = single release)</li>
+        <li>Game include / exclude set if needed</li>
+        <li>After a test claim: wallet credit equals <code>init_amount</code>, not wagered total</li>
+      </ul>
+    </section>
+
+    <footer>
+      Oritech · Cash Prize reference · Source notes in <code>cash-prize.md</code> ·
+      <a href="https://go.oritech.space/bonus-system/" target="_blank" rel="noopener">go.oritech.space/bonus-system</a>
+    </footer>
+  </div>
+</body>
+</html>
