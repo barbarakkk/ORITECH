@@ -4,7 +4,7 @@
 * [Dashboard](dashboard.md)
 * [Players Management](players-management.md)
 * [VIP Management](vip-management.md)
-** [vip 123](games.md)
+* [vip 123](games.md)
 * [Games](games.md)
 * [Engagement](engagement.md)
 * [Financials](financials.md)
